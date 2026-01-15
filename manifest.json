@@ -1,21 +1,29 @@
 {
   "name": "Mazaar Restaurant",
   "short_name": "Mazaar",
+  "description": "Authentic Afghani Cuisine - Order Online, Dine-in, and Catering",
   "start_url": "./index.html",
+  "scope": "./",
   "display": "standalone",
   "background_color": "#0f0f0f",
   "theme_color": "#800020",
-  "orientation": "portrait",
+  "orientation": "portrait-primary",
+  "id": "mazaar-restaurant-pwa",
+  "categories": ["food", "restaurant", "delivery"],
   "icons": [
     {
       "src": "logo.png",
       "sizes": "192x192",
-      "type": "image/png"
+      "type": "image/png",
+      "purpose": "any"
     },
     {
       "src": "logo.png",
       "sizes": "512x512",
-      "type": "image/png"
+      "type": "image/png",
+      "purpose": "any maskable"
     }
-  ]
+  ],
+  "screenshots": [],
+  "prefer_related_applications": false
 }
