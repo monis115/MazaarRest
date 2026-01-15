@@ -1,0 +1,1354 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <meta name="description"
+        content="Mazaar Restaurant - Authentic Afghani Cuisine in New Delhi. Dine-in, Delivery, and Catering.">
+    <meta name="theme-color" content="#800020">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Mazaar">
+
+    <title>Mazaar Restaurant | The Taste of Afghanistan</title>
+    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="manifest" href="manifest.json">
+    <link rel="apple-touch-icon" href="logo.png">
+
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('./sw.js')
+                    .then(registration => console.log('SW registered: ', registration))
+                    .catch(registrationError => console.log('SW registration failed: ', registrationError));
+            });
+        }
+    </script>
+</head>
+
+<body>
+    <!-- Loading Screen -->
+    <div class="loader-wrapper" id="loader">
+        <div class="loader-container">
+            <div class="loader"></div>
+            <i class="fas fa-utensils loader-icon"></i>
+        </div>
+        <span class="loader-text">MAZAAR</span>
+    </div>
+
+    <!-- Header -->
+    <header>
+        <nav>
+            <div class="logo"><img src="logo.png" alt="Mazaar" class="logo-img"></div>
+            <div class="mobile-toggle" onclick="toggleMobileMenu()">
+                <i class="fas fa-bars"></i>
+            </div>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">Story</a></li>
+                <li><a href="#menu">Menu</a></li>
+                <li><a href="#amenities">Amenities</a></li>
+                <li><a href="#contact">Visit</a></li>
+            </ul>
+            <div class="header-actions">
+                <div class="cart-btn" onclick="toggleCart()">
+                    <i class="fas fa-shopping-bag"></i>
+                    <span id="cart-count">0</span>
+                </div>
+                <button onclick="openModal()" class="btn-reserve">Book Table</button>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section - Food Delivery Focused -->
+    <section id="home" class="hero">
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <span class="tagline"><i class="fas fa-motorcycle"></i> Free Delivery Over ₹500</span>
+            <h1>Authentic Afghani<br>Delivered Fresh</h1>
+            <p>Royal flavors from Afghanistan to your doorstep.<br>Order now and taste the tradition.</p>
+            <div class="hero-stats">
+                <div class="stat"><i class="fas fa-clock"></i><span>30-45 min</span></div>
+                <div class="stat"><i class="fas fa-star"></i><span>4.8★ Rating</span></div>
+                <div class="stat"><i class="fas fa-utensils"></i><span>50+ Dishes</span></div>
+            </div>
+            <div class="hero-buttons">
+                <a href="#menu" class="btn-main"><i class="fas fa-shopping-bag"></i> Order Now</a>
+                <a href="tel:+911141000000" class="btn-outline"><i class="fas fa-phone-alt"></i> Call to Order</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Amenities / Highlights Banner -->
+    <section class="highlights-banner">
+        <div class="highlight-item">
+            <i class="fas fa-star-and-crescent"></i>
+            <span>100% Halal</span>
+        </div>
+        <div class="highlight-item">
+            <i class="fas fa-wifi"></i>
+            <span>Free WiFi</span>
+        </div>
+        <div class="highlight-item">
+            <i class="fas fa-parking"></i>
+            <span>Free Parking</span>
+        </div>
+        <div class="highlight-item">
+            <i class="fas fa-wheelchair"></i>
+            <span>Accessible</span>
+        </div>
+        <div class="highlight-item">
+            <i class="fas fa-praying-hands"></i>
+            <span>Prayer Space</span>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about">
+        <div class="section-title">The Mazaar Experience</div>
+        <div class="about">
+            <div class="about-text">
+                <h3>A Sanctuary of Taste</h3>
+                <p>Located in the heart of Lajpat Nagar, Mazaar Restaurant is more than just a dining place; it is a
+                    celebration of Afghani culture and hospitality. Our chefs use age-old recipes and spices imported
+                    directly from Afghanistan to bring you flavors you won't find anywhere else.</p>
+
+                <div class="features-grid">
+                    <div class="feature">
+                        <i class="fas fa-users"></i>
+                        <h4>Family & Groups</h4>
+                        <p>Spacious seating perfect for big families.</p>
+                    </div>
+                    <div class="feature">
+                        <i class="fas fa-couch"></i>
+                        <h4>Cozy Ambiance</h4>
+                        <p>Traditional Dastarkhan & Sofa seating.</p>
+                    </div>
+                    <div class="feature">
+                        <i class="fas fa-utensils"></i>
+                        <h4>Catering</h4>
+                        <p>We cater for weddings and special events.</p>
+                    </div>
+                    <div class="feature">
+                        <i class="fas fa-credit-card"></i>
+                        <h4>Easy Payment</h4>
+                        <p>All Cards & UPI accepted.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="about-img">
+                <img src="ambience.png" alt="Mazaar Restaurant Interior">
+            </div>
+        </div>
+    </section>
+
+    <!-- Menu Section - Enhanced Food Delivery -->
+    <section id="menu">
+        <div class="section-title">Order Your Favorites</div>
+
+        <!-- Delivery Info Banner -->
+        <div class="delivery-banner">
+            <div class="delivery-info">
+                <i class="fas fa-motorcycle"></i>
+                <span>Free Delivery over ₹500</span>
+            </div>
+            <div class="delivery-info">
+                <i class="fas fa-clock"></i>
+                <span>30-45 min delivery</span>
+            </div>
+            <div class="delivery-info">
+                <i class="fas fa-star"></i>
+                <span>4.8★ (2.5k+ reviews)</span>
+            </div>
+        </div>
+
+        <!-- Category Filter - Enhanced -->
+        <div class="menu-controls">
+            <div class="search-wrapper">
+                <input type="text" id="menuSearch" placeholder="Search for dishes..." onkeyup="searchMenu()">
+                <i class="fas fa-search"></i>
+            </div>
+            <div class="menu-categories">
+                <button class="cat-btn active" onclick="filterMenu('all')"><i class="fas fa-fire"></i> Popular</button>
+                <button class="cat-btn" onclick="filterMenu('kabab')"><i class="fas fa-drumstick-bite"></i>
+                    Kebabs</button>
+                <button class="cat-btn" onclick="filterMenu('pulao')"><i class="fas fa-bowl-rice"></i> Rice</button>
+                <button class="cat-btn" onclick="filterMenu('curry')"><i class="fas fa-pot-hot"></i> Curries</button>
+                <button class="cat-btn" onclick="filterMenu('bread')"><i class="fas fa-bread-slice"></i> Breads</button>
+                <button class="cat-btn" onclick="filterMenu('drinks')"><i class="fas fa-mug-hot"></i> Drinks</button>
+                <button class="cat-btn" onclick="filterMenu('dessert')"><i class="fas fa-ice-cream"></i>
+                    Desserts</button>
+            </div>
+        </div>
+
+        <div class="menu-grid" id="menuGrid">
+            <!-- KEBABS -->
+            <div class="menu-item" data-category="kabab">
+                <div class="menu-img">
+                    <img src="dish.png" alt="Chopan Kabab">
+                    <span class="badge bestseller">🔥 Bestseller</span>
+                    <span class="delivery-time"><i class="fas fa-clock"></i> 25 min</span>
+                </div>
+                <div class="menu-info">
+                    <div class="item-header">
+                        <h3>Mutton Chopan Kabab</h3>
+                        <div class="rating"><i class="fas fa-star"></i> 4.9</div>
+                    </div>
+                    <p>Succulent lamb chops marinated in traditional spices and charcoal grilled.</p>
+                    <div class="price-row">
+                        <span class="price">₹650</span>
+                        <button class="btn-add" onclick="addToCart('Mutton Chopan Kabab', 650)"><i
+                                class="fas fa-plus"></i></button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="menu-item" data-category="kabab">
+                <div class="menu-img">
+                    <img src="https://images.unsplash.com/photo-1599487488170-d11ec9c172f0?auto=format&fit=crop&w=800"
+                        alt="Seekh Kabab">
+                    <span class="delivery-time"><i class="fas fa-clock"></i> 20 min</span>
+                </div>
+                <div class="menu-info">
+                    <div class="item-header">
+                        <h3>Afghan Seekh Kabab</h3>
+                        <div class="rating"><i class="fas fa-star"></i> 4.7</div>
+                    </div>
+                    <p>Minced meat skewers flavored with coriander, green chillies and spices.</p>
+                    <div class="price-row">
+                        <span class="price">₹480</span>
+                        <button class="btn-add" onclick="addToCart('Afghan Seekh Kabab', 480)"><i
+                                class="fas fa-plus"></i></button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="menu-item" data-category="kabab">
+                <div class="menu-img">
+                    <img src="https://images.unsplash.com/photo-1603360946369-dc9bb6258143?auto=format&fit=crop&w=800"
+                        alt="Chicken Tikka">
+                    <span class="badge new">✨ New</span>
+                    <span class="delivery-time"><i class="fas fa-clock"></i> 20 min</span>
+                </div>
+                <div class="menu-info">
+                    <div class="item-header">
+                        <h3>Murgh Tikka Kabab</h3>
+                        <div class="rating"><i class="fas fa-star"></i> 4.8</div>
+                    </div>
+                    <p>Tender chicken pieces marinated in yogurt and aromatic Afghan spices.</p>
+                    <div class="price-row">
+                        <span class="price">₹380</span>
+                        <button class="btn-add" onclick="addToCart('Murgh Tikka Kabab', 380)"><i
+                                class="fas fa-plus"></i></button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="menu-item" data-category="kabab">
+                <div class="menu-img">
+                    <img src="https://images.unsplash.com/photo-1555939594-58d7cb561ad1?auto=format&fit=crop&w=800"
+                        alt="Lamb Shashlik">
+                    <span class="delivery-time"><i class="fas fa-clock"></i> 30 min</span>
+                </div>
+                <div class="menu-info">
+                    <div class="item-header">
+                        <h3>Lamb Shashlik</h3>
+                        <div class="rating"><i class="fas fa-star"></i> 4.6</div>
+                    </div>
+                    <p>Grilled lamb cubes with bell peppers, onions and tomatoes on skewers.</p>
+                    <div class="price-row">
+                        <span class="price">₹520</span>
+                        <button class="btn-add" onclick="addToCart('Lamb Shashlik', 520)"><i
+                                class="fas fa-plus"></i></button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="menu-item" data-category="kabab">
+                <div class="menu-img">
+                    <img src="https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=800"
+                        alt="Mixed Grill">
+                    <span class="badge bestseller">🔥 Best Value</span>
+                    <span class="delivery-time"><i class="fas fa-clock"></i> 35 min</span>
+                </div>
+                <div class="menu-info">
+                    <div class="item-header">
+                        <h3>Mixed Grill Platter</h3>
+                        <div class="rating"><i class="fas fa-star"></i> 4.9</div>
+                    </div>
+                    <p>Assortment of chopan, seekh, tikka and shashlik. Serves 2-3 people.</p>
+                    <div class="price-row">
+                        <span class="price">₹1,299</span>
+                        <button class="btn-add" onclick="addToCart('Mixed Grill Platter', 1299)"><i
+                                class="fas fa-plus"></i></button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- RICE DISHES -->
+            <div class="menu-item" data-category="pulao">
+                <div class="menu-img">
+                    <img src="hero.png" alt="Kabuli Pulao">
+                    <span class="badge signature">👨‍🍳 Signature</span>
+                    <span class="delivery-time"><i class="fas fa-clock"></i> 30 min</span>
+                </div>
+                <div class="menu-info">
+                    <div class="item-header">
+                        <h3>Kabuli Pulao (Uzbeki)</h3>
+                        <div class="rating"><i class="fas fa-star"></i> 5.0</div>
+                    </div>
+                    <p>Basmati rice cooked with tender lamb, carrots, sultanas and mixed nuts.</p>
+                    <div class="price-row">
+                        <span class="price">₹450</span>
+                        <button class="btn-add" onclick="addToCart('Kabuli Pulao', 450)"><i
+                                class="fas fa-plus"></i></button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="menu-item" data-category="pulao">
+                <div class="menu-img">
+                    <img src="https://images.unsplash.com/photo-1563379091339-03b21ab4a4f8?auto=format&fit=crop&w=800"
+                        alt="Chicken Pulao">
+                    <span class="delivery-time"><i class="fas fa-clock"></i> 25 min</span>
+                </div>
+                <div class="menu-info">
+                    <div class="item-header">
+                        <h3>Murgh Pulao</h3>
+                        <div class="rating"><i class="fas fa-star"></i> 4.7</div>
+                    </div>
+                    <p>Fragrant rice layered with spiced chicken, fried onions and saffron.</p>
+                    <div class="price-row">
+                        <span class="price">₹350</span>
+                        <button class="btn-add" onclick="addToCart('Murgh Pulao', 350)"><i
+                                class="fas fa-plus"></i></button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="menu-item" data-category="pulao">
+                <div class="menu-img">
+                    <img src="https://images.unsplash.com/photo-1596797038530-2c107229654b?auto=format&fit=crop&w=800"
+                        alt="Mutton Biryani">
+                    <span class="badge bestseller">🔥 Popular</span>
+                    <span class="delivery-time"><i class="fas fa-clock"></i> 35 min</span>
+                </div>
+                <div class="menu-info">
+                    <div class="item-header">
+                        <h3>Afghani Mutton Biryani</h3>
+                        <div class="rating"><i class="fas fa-star"></i> 4.8</div>
+                    </div>
+                    <p>Aromatic long-grain rice with tender mutton, caramelized onions and spices.</p>
+                    <div class="price-row">
+                        <span class="price">₹550</span>
+                        <button class="btn-add" onclick="addToCart('Afghani Mutton Biryani', 550)"><i
+                                class="fas fa-plus"></i></button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CURRIES -->
+            <div class="menu-item" data-category="curry">
+                <div class="menu-img">
+                    <img src="https://images.unsplash.com/photo-1565557623262-b51c2513a641?auto=format&fit=crop&w=800"
+                        alt="Qorma">
+                    <span class="delivery-time"><i class="fas fa-clock"></i> 25 min</span>
+                </div>
+                <div class="menu-info">
+                    <div class="item-header">
+                        <h3>Qorma-e-Gosht</h3>
+                        <div class="rating"><i class="fas fa-star"></i> 4.8</div>
+                    </div>
+                    <p>Rich mutton curry slow-cooked with tomatoes, ginger and garlic.</p>
+                    <div class="price-row">
+                        <span class="price">₹550</span>
+                        <button class="btn-add" onclick="addToCart('Qorma-e-Gosht', 550)"><i
+                                class="fas fa-plus"></i></button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="menu-item" data-category="curry">
+                <div class="menu-img">
+                    <img src="https://images.unsplash.com/photo-1606471191009-63994c53433b?auto=format&fit=crop&w=800"
+                        alt="Mantu">
+                    <span class="badge signature">👨‍🍳 Chef's Pick</span>
+                    <span class="delivery-time"><i class="fas fa-clock"></i> 30 min</span>
+                </div>
+                <div class="menu-info">
+                    <div class="item-header">
+                        <h3>Mantu (8 pcs)</h3>
+                        <div class="rating"><i class="fas fa-star"></i> 4.9</div>
+                    </div>
+                    <p>Steamed dumplings filled with spiced meat, topped with yogurt and dal.</p>
+                    <div class="price-row">
+                        <span class="price">₹350</span>
+                        <button class="btn-add" onclick="addToCart('Mantu', 350)"><i class="fas fa-plus"></i></button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="menu-item" data-category="curry">
+                <div class="menu-img">
+                    <img src="https://images.unsplash.com/photo-1585937421612-70a008356fbe?auto=format&fit=crop&w=800"
+                        alt="Chicken Karahi">
+                    <span class="delivery-time"><i class="fas fa-clock"></i> 25 min</span>
+                </div>
+                <div class="menu-info">
+                    <div class="item-header">
+                        <h3>Murgh Karahi</h3>
+                        <div class="rating"><i class="fas fa-star"></i> 4.6</div>
+                    </div>
+                    <p>Wok-tossed chicken in tomato-based gravy with green chilies and ginger.</p>
+                    <div class="price-row">
+                        <span class="price">₹420</span>
+                        <button class="btn-add" onclick="addToCart('Murgh Karahi', 420)"><i
+                                class="fas fa-plus"></i></button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="menu-item" data-category="curry">
+                <div class="menu-img">
+                    <img src="https://images.unsplash.com/photo-1574653853027-5382a3d23a15?auto=format&fit=crop&w=800"
+                        alt="Dal Fry">
+                    <span class="badge veg">🌱 Veg</span>
+                    <span class="delivery-time"><i class="fas fa-clock"></i> 15 min</span>
+                </div>
+                <div class="menu-info">
+                    <div class="item-header">
+                        <h3>Dal-e-Afghani</h3>
+                        <div class="rating"><i class="fas fa-star"></i> 4.5</div>
+                    </div>
+                    <p>Creamy yellow lentils tempered with cumin, garlic and aromatic spices.</p>
+                    <div class="price-row">
+                        <span class="price">₹180</span>
+                        <button class="btn-add" onclick="addToCart('Dal-e-Afghani', 180)"><i
+                                class="fas fa-plus"></i></button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- BREADS -->
+            <div class="menu-item" data-category="bread">
+                <div class="menu-img">
+                    <img src="https://images.unsplash.com/photo-1626074353765-517a681e40be?auto=format&fit=crop&w=800"
+                        alt="Naan">
+                    <span class="delivery-time"><i class="fas fa-clock"></i> 10 min</span>
+                </div>
+                <div class="menu-info">
+                    <div class="item-header">
+                        <h3>Afghani Naan</h3>
+                        <div class="rating"><i class="fas fa-star"></i> 4.7</div>
+                    </div>
+                    <p>Large, fluffy traditional bread baked in a tandoor.</p>
+                    <div class="price-row">
+                        <span class="price">₹60</span>
+                        <button class="btn-add" onclick="addToCart('Afghani Naan', 60)"><i
+                                class="fas fa-plus"></i></button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="menu-item" data-category="bread">
+                <div class="menu-img">
+                    <img src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?auto=format&fit=crop&w=800"
+                        alt="Garlic Naan">
+                    <span class="badge bestseller">🔥 Popular</span>
+                    <span class="delivery-time"><i class="fas fa-clock"></i> 12 min</span>
+                </div>
+                <div class="menu-info">
+                    <div class="item-header">
+                        <h3>Butter Garlic Naan</h3>
+                        <div class="rating"><i class="fas fa-star"></i> 4.9</div>
+                    </div>
+                    <p>Crispy naan brushed with garlic butter and fresh coriander.</p>
+                    <div class="price-row">
+                        <span class="price">₹90</span>
+                        <button class="btn-add" onclick="addToCart('Butter Garlic Naan', 90)"><i
+                                class="fas fa-plus"></i></button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="menu-item" data-category="bread">
+                <div class="menu-img">
+                    <img src="https://images.unsplash.com/photo-1601050690597-df0568f70950?auto=format&fit=crop&w=800"
+                        alt="Roti">
+                    <span class="delivery-time"><i class="fas fa-clock"></i> 8 min</span>
+                </div>
+                <div class="menu-info">
+                    <div class="item-header">
+                        <h3>Tandoori Roti (2 pcs)</h3>
+                        <div class="rating"><i class="fas fa-star"></i> 4.5</div>
+                    </div>
+                    <p>Whole wheat bread baked in clay oven. Healthy and delicious.</p>
+                    <div class="price-row">
+                        <span class="price">₹40</span>
+                        <button class="btn-add" onclick="addToCart('Tandoori Roti', 40)"><i
+                                class="fas fa-plus"></i></button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- DRINKS -->
+            <div class="menu-item" data-category="drinks">
+                <div class="menu-img">
+                    <img src="https://images.unsplash.com/photo-1544787219-7f47ccb76574?auto=format&fit=crop&w=800"
+                        alt="Qahwa">
+                    <span class="badge signature">☕ Traditional</span>
+                    <span class="delivery-time"><i class="fas fa-clock"></i> 5 min</span>
+                </div>
+                <div class="menu-info">
+                    <div class="item-header">
+                        <h3>Afghan Qahwa</h3>
+                        <div class="rating"><i class="fas fa-star"></i> 4.8</div>
+                    </div>
+                    <p>Traditional green tea with cardamom, saffron and dried fruits.</p>
+                    <div class="price-row">
+                        <span class="price">₹120</span>
+                        <button class="btn-add" onclick="addToCart('Afghan Qahwa', 120)"><i
+                                class="fas fa-plus"></i></button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="menu-item" data-category="drinks">
+                <div class="menu-img">
+                    <img src="https://images.unsplash.com/photo-1541167760496-1628856ab772?auto=format&fit=crop&w=800"
+                        alt="Masala Chai">
+                    <span class="delivery-time"><i class="fas fa-clock"></i> 5 min</span>
+                </div>
+                <div class="menu-info">
+                    <div class="item-header">
+                        <h3>Karak Chai</h3>
+                        <div class="rating"><i class="fas fa-star"></i> 4.7</div>
+                    </div>
+                    <p>Strong milk tea brewed with cardamom and spices. Perfect after meals.</p>
+                    <div class="price-row">
+                        <span class="price">₹80</span>
+                        <button class="btn-add" onclick="addToCart('Karak Chai', 80)"><i
+                                class="fas fa-plus"></i></button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="menu-item" data-category="drinks">
+                <div class="menu-img">
+                    <img src="https://images.unsplash.com/photo-1571091718767-18b5b1457add?auto=format&fit=crop&w=800"
+                        alt="Lassi">
+                    <span class="delivery-time"><i class="fas fa-clock"></i> 5 min</span>
+                </div>
+                <div class="menu-info">
+                    <div class="item-header">
+                        <h3>Sweet Lassi</h3>
+                        <div class="rating"><i class="fas fa-star"></i> 4.6</div>
+                    </div>
+                    <p>Creamy yogurt drink blended with sugar and a hint of cardamom.</p>
+                    <div class="price-row">
+                        <span class="price">₹100</span>
+                        <button class="btn-add" onclick="addToCart('Sweet Lassi', 100)"><i
+                                class="fas fa-plus"></i></button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- DESSERTS -->
+            <div class="menu-item" data-category="dessert">
+                <div class="menu-img">
+                    <img src="sheeryakh.webp" alt="Sheer Yakh">
+                    <span class="badge signature">🍨 Homemade</span>
+                    <span class="delivery-time"><i class="fas fa-clock"></i> 5 min</span>
+                </div>
+                <div class="menu-info">
+                    <div class="item-header">
+                        <h3>Sheer Yakh</h3>
+                        <div class="rating"><i class="fas fa-star"></i> 4.9</div>
+                    </div>
+                    <p>Traditional handmade ice cream with cardamom and pistachios.</p>
+                    <div class="price-row">
+                        <span class="price">₹200</span>
+                        <button class="btn-add" onclick="addToCart('Sheer Yakh', 200)"><i
+                                class="fas fa-plus"></i></button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="menu-item" data-category="dessert">
+                <div class="menu-img">
+                    <img src="https://images.unsplash.com/photo-1551024601-bec78aea704b?auto=format&fit=crop&w=800"
+                        alt="Gulab Jamun">
+                    <span class="delivery-time"><i class="fas fa-clock"></i> 8 min</span>
+                </div>
+                <div class="menu-info">
+                    <div class="item-header">
+                        <h3>Gulab Jamun (4 pcs)</h3>
+                        <div class="rating"><i class="fas fa-star"></i> 4.8</div>
+                    </div>
+                    <p>Soft milk dumplings soaked in rose-flavored sugar syrup. Served warm.</p>
+                    <div class="price-row">
+                        <span class="price">₹150</span>
+                        <button class="btn-add" onclick="addToCart('Gulab Jamun', 150)"><i
+                                class="fas fa-plus"></i></button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="menu-item" data-category="dessert">
+                <div class="menu-img">
+                    <img src="https://images.unsplash.com/photo-1571115177098-24ec42ed204d?auto=format&fit=crop&w=800"
+                        alt="Firni">
+                    <span class="badge new">✨ New</span>
+                    <span class="delivery-time"><i class="fas fa-clock"></i> 10 min</span>
+                </div>
+                <div class="menu-info">
+                    <div class="item-header">
+                        <h3>Firni</h3>
+                        <div class="rating"><i class="fas fa-star"></i> 4.7</div>
+                    </div>
+                    <p>Creamy rice pudding with saffron, served chilled in clay bowls.</p>
+                    <div class="price-row">
+                        <span class="price">₹140</span>
+                        <button class="btn-add" onclick="addToCart('Firni', 140)"><i class="fas fa-plus"></i></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="view-all-container">
+            <button id="viewAllBtn" class="btn-outline" onclick="toggleViewAll()">View All Menu</button>
+        </div>
+    </section>
+
+    <!-- Why Order Direct Section -->
+    <section id="why-direct"
+        style="background: linear-gradient(rgba(0,0,0,0.9), rgba(0,0,0,0.9)), url('hero.png') center/cover fixed; text-align: center;">
+        <div class="section-title">Why Order Direct?</div>
+        <p style="color: #ccc; margin-bottom: 3rem; font-size: 1.2rem;">Support local and save money by ordering
+            directly from our website.</p>
+
+        <div class="benefits-grid">
+            <div class="benefit-card">
+                <i class="fas fa-percent"></i>
+                <h3>Lower Prices</h3>
+                <p>Third-party apps charge commissions. Order here for the best rates.</p>
+            </div>
+            <div class="benefit-card">
+                <i class="fas fa-gift"></i>
+                <h3>Exclusive Offers</h3>
+                <p>Website-only discounts and special deals you won't find on Swiggy or Zomato.</p>
+            </div>
+            <div class="benefit-card">
+                <i class="fas fa-tachometer-alt"></i>
+                <h3>Priority Service</h3>
+                <p>Direct orders bypass the queue and get priority preparation in our kitchen.</p>
+            </div>
+            <div class="benefit-card">
+                <i class="fas fa-headset"></i>
+                <h3>Instant Support</h3>
+                <p>Talk to us directly for any changes or queries. No middlemen or chatbots.</p>
+            </div>
+            <div class="benefit-card">
+                <i class="fas fa-hand-holding-heart"></i>
+                <h3>Support Local</h3>
+                <p>Help us thrive by ensuring every rupee goes towards better food and service.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Amenities List Section -->
+    <section id="amenities" style="background-color: var(--bg-card);">
+        <div class="section-title">Amenities & Offerings</div>
+        <div class="amenities-container">
+            <div class="amenity-column">
+                <h4><i class="fas fa-concierge-bell"></i> Service Options</h4>
+                <ul>
+                    <li><i class="fas fa-check"></i> Dine-in (Dastarkhan & Table)</li>
+                    <li><i class="fas fa-check"></i> Takeaway & No-contact delivery</li>
+                    <li><i class="fas fa-check"></i> Advanced Reservations</li>
+                    <li><i class="fas fa-check"></i> Late-night food</li>
+                </ul>
+            </div>
+            <div class="amenity-column">
+                <h4><i class="fas fa-star"></i> Highlights</h4>
+                <ul>
+                    <li><i class="fas fa-check"></i> Great Tea Selection (Qahwa)</li>
+                    <li><i class="fas fa-check"></i> Great Desserts</li>
+                    <li><i class="fas fa-check"></i> Halal Food</li>
+                    <li><i class="fas fa-check"></i> Small Plates / Quick Bite</li>
+                </ul>
+            </div>
+            <div class="amenity-column">
+                <h4><i class="fas fa-universal-access"></i> Accessibility & More</h4>
+                <ul>
+                    <li><i class="fas fa-check"></i> Wheelchair-accessible entrance</li>
+                    <li><i class="fas fa-check"></i> Wheelchair-accessible toilet</li>
+                    <li><i class="fas fa-check"></i> Good for Kids</li>
+                    <li><i class="fas fa-check"></i> Restroom Available</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact / Location -->
+    <section id="contact">
+        <div class="contact-wrapper">
+            <div class="contact-info">
+                <div class="section-title" style="text-align: left;">Visit Mazaar</div>
+                <p class="address">
+                    Shop No 786, I - Block, Lajpat Nagar II,<br>
+                    New Delhi, Delhi 110024
+                </p>
+                <div class="contact-details">
+                    <p><i class="fas fa-phone-alt"></i> +91 11 4100 0000</p>
+                    <p><i class="fas fa-envelope"></i> info@mazaarrestaurant.com</p>
+                    <p><i class="fas fa-clock"></i> Mon-Sun: 12:00 PM - 11:30 PM</p>
+                </div>
+            </div>
+            <div class="map-container">
+                <iframe
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d14008.065430887377!2d77.2443807!3d28.5701715!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390ce3ad97db2cb5%3A0xdce447161ff5833!2sMazaar%20Restaurant!5e0!3m2!1sen!2sin!4v1709587654321!5m2!1sen!2sin"
+                    width="100%" height="100%" style="border:0; filter: grayscale(100%) invert(92%) contrast(83%);"
+                    allowfullscreen="" loading="lazy">
+                </iframe>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-col">
+                <img src="logo.png" alt="Mazaar" class="footer-logo-img">
+                <p>Authentic Afghani Cuisine.</p>
+                <div class="social-links">
+                    <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                </div>
+            </div>
+            <div class="footer-col">
+                <h3>Quick Links</h3>
+                <a href="#menu">Menu</a>
+                <a href="#about">Story</a>
+                <a href="#contact">Contact</a>
+            </div>
+            <div class="footer-col">
+                <h3>Newsletter</h3>
+                <p>Subscribe for offers.</p>
+                <input type="email" placeholder="Your email" class="newsletter-input"
+                    style="padding: 0.5rem; width: 100%; border: none; margin-top: 0.5rem;">
+            </div>
+        </div>
+        <div class="copyright">
+            &copy; 2024 Mazaar Restaurant. All Rights Reserved.
+        </div>
+    </footer>
+
+    <!-- Mobile Bottom Navigation -->
+    <nav class="mobile-bottom-nav">
+        <ul>
+            <li><a href="#home" onclick="closeMenuPage()" class="active"><i
+                        class="fas fa-home"></i><span>Home</span></a></li>
+            <li><a href="#" onclick="openMenuPage(); return false;"><i class="fas fa-utensils"></i><span>Menu</span></a>
+            </li>
+            <li><a href="#" onclick="toggleCart(); return false;"><i
+                        class="fas fa-shopping-cart"></i><span>Cart</span></a></li>
+            <li><a href="#contact" onclick="closeMenuPage()"><i
+                        class="fas fa-map-marker-alt"></i><span>Contact</span></a></li>
+        </ul>
+    </nav>
+
+    <!-- Booking Modal -->
+    <div id="bookingModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal()">&times;</span>
+            <div class="modal-header">
+                <h2>Book a Table</h2>
+                <p>Reserve your spot at Mazaar</p>
+            </div>
+            <form onsubmit="handleBooking(event)">
+                <div class="form-group">
+                    <label>Name</label>
+                    <input type="text" required placeholder="Your Name">
+                </div>
+                <div class="form-group">
+                    <label>Phone</label>
+                    <input type="tel" required placeholder="Phone Number">
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Date</label>
+                        <input type="date" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Time</label>
+                        <input type="time" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Guests</label>
+                    <select>
+                        <option>2 People</option>
+                        <option>3 People</option>
+                        <option>4 People</option>
+                        <option>5+ People</option>
+                        <option>Large Group</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn-main" style="width: 100%;">Confirm Booking</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Floating Cart -->
+    <div id="cartModal" class="cart-sidebar">
+        <div class="cart-header">
+            <h3>Your Order</h3>
+            <span onclick="toggleCart()" style="cursor: pointer;">&times;</span>
+        </div>
+        <div id="cartItems" class="cart-items">
+            <!-- Items added via JS -->
+            <p style="text-align: center; color: #888; margin-top: 2rem;">Your cart is empty.</p>
+        </div>
+        <div class="cart-footer">
+            <div class="total-row">
+                <span>Total</span>
+                <span id="cartTotal">₹0</span>
+            </div>
+            <button class="btn-main" style="width: 100%;" onclick="orderViaWhatsApp()">
+                <i class="fab fa-whatsapp"></i> Order via WhatsApp
+            </button>
+        </div>
+    </div>
+
+    <!-- PWA Install Prompt -->
+    <div id="install-prompt">
+        <div class="close-install" onclick="closeInstallPrompt()">&times;</div>
+        <div class="text">
+            <h4>Install Mazaar App</h4>
+            <p>Order faster & easier!</p>
+        </div>
+        <button onclick="installPWA()">Install</button>
+    </div>
+
+    <!-- FULL PAGE MENU OVERLAY -->
+    <div id="menuPage" class="menu-page-overlay">
+        <!-- Menu Page Header -->
+        <div class="menu-page-header">
+            <button class="back-btn" onclick="closeMenuPage()">
+                <i class="fas fa-arrow-left"></i>
+            </button>
+            <h2>Our Menu</h2>
+            <div class="header-cart" onclick="toggleCart()">
+                <i class="fas fa-shopping-bag"></i>
+                <span id="menu-cart-count">0</span>
+            </div>
+        </div>
+
+        <!-- Menu Page Search -->
+        <div class="menu-page-search">
+            <input type="text" id="menuPageSearch" placeholder="Search dishes..." onkeyup="searchMenuPage()">
+            <i class="fas fa-search"></i>
+        </div>
+
+        <!-- Menu Page Content -->
+        <div class="menu-page-content" id="menuPageContent">
+            <!-- Dishes will be populated by JS -->
+        </div>
+
+        <!-- Floating Category FAB -->
+        <div class="category-fab" onclick="toggleCategoryPanel()">
+            <i class="fas fa-filter"></i>
+        </div>
+
+        <!-- Category Selection Panel -->
+        <div class="category-panel" id="categoryPanel">
+            <div class="category-panel-header">
+                <h3>Categories</h3>
+                <button onclick="toggleCategoryPanel()"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="category-panel-items">
+                <div class="category-item active" onclick="filterMenuPage('all')">
+                    <i class="fas fa-fire"></i>
+                    <span>All</span>
+                </div>
+                <div class="category-item" onclick="filterMenuPage('kabab')">
+                    <i class="fas fa-drumstick-bite"></i>
+                    <span>Kebabs</span>
+                </div>
+                <div class="category-item" onclick="filterMenuPage('pulao')">
+                    <i class="fas fa-bowl-rice"></i>
+                    <span>Rice</span>
+                </div>
+                <div class="category-item" onclick="filterMenuPage('curry')">
+                    <i class="fas fa-pot-hot"></i>
+                    <span>Curries</span>
+                </div>
+                <div class="category-item" onclick="filterMenuPage('bread')">
+                    <i class="fas fa-bread-slice"></i>
+                    <span>Breads</span>
+                </div>
+                <div class="category-item" onclick="filterMenuPage('drinks')">
+                    <i class="fas fa-mug-hot"></i>
+                    <span>Drinks</span>
+                </div>
+                <div class="category-item" onclick="filterMenuPage('dessert')">
+                    <i class="fas fa-ice-cream"></i>
+                    <span>Desserts</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // ============================================
+        // PREMIUM UX FEATURES - CLIENT DEMO READY
+        // ============================================
+
+        // 1. LOADING SCREEN
+        window.addEventListener('load', function () {
+            const loader = document.getElementById('loader');
+            setTimeout(() => {
+                loader.classList.add('hidden');
+            }, 800); // Slight delay for effect
+        });
+
+        // 2. STICKY HEADER WITH BLUR
+        window.addEventListener('scroll', function () {
+            const header = document.querySelector('header');
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        // 3. SCROLL FADE-IN ANIMATIONS
+        const fadeElements = document.querySelectorAll('section');
+        fadeElements.forEach(el => el.classList.add('fade-in-section'));
+
+        const fadeObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        fadeElements.forEach(el => fadeObserver.observe(el));
+
+        // 4. IMAGE LAZY LOADING WITH SHIMMER
+        document.querySelectorAll('.menu-img img').forEach(img => {
+            img.addEventListener('load', function () {
+                this.classList.add('loaded');
+            });
+            // If already cached
+            if (img.complete) {
+                img.classList.add('loaded');
+            }
+        });
+
+        // ============================================
+        // EXISTING FUNCTIONALITY (ENHANCED)
+        // ============================================
+
+        // Modal Logic
+        function openModal() {
+            document.getElementById('bookingModal').style.display = 'flex';
+        }
+
+        function closeModal() {
+            document.getElementById('bookingModal').style.display = 'none';
+        }
+
+        function handleBooking(e) {
+            e.preventDefault();
+            alert('Thank you! Your table request has been received. We will confirm shortly.');
+            closeModal();
+        }
+
+        // Cart Logic (Enhanced with Quantity)
+        let cart = {};
+
+        function addToCart(name, price) {
+            if (cart[name]) {
+                cart[name].qty++;
+            } else {
+                cart[name] = { name, price, qty: 1 };
+            }
+            updateCart();
+
+            // Visual Feedback: Pulse the cart icon
+            const cartBtn = document.querySelector('.cart-btn');
+            cartBtn.classList.add('cart-pulse');
+            setTimeout(() => {
+                cartBtn.classList.remove('cart-pulse');
+            }, 500);
+
+            // Visual Feedback: Show Toast
+            showToast(`${name} added to cart!`);
+        }
+
+        function changeQty(name, delta) {
+            if (cart[name]) {
+                cart[name].qty += delta;
+                if (cart[name].qty <= 0) {
+                    delete cart[name];
+                }
+                updateCart();
+            }
+        }
+
+        function removeFromCart(name) {
+            delete cart[name];
+            updateCart();
+        }
+
+        function showToast(message) {
+            let toast = document.getElementById("toast");
+            if (!toast) {
+                toast = document.createElement("div");
+                toast.id = "toast";
+                toast.className = "toast";
+                document.body.appendChild(toast);
+            }
+            toast.innerText = message;
+            toast.className = "toast show";
+            setTimeout(function () { toast.className = toast.className.replace("show", ""); }, 3000);
+        }
+
+        function toggleCart() {
+            document.querySelector('.cart-sidebar').classList.toggle('active');
+        }
+
+        function updateCart() {
+            const cartItems = document.getElementById('cartItems');
+            const cartTotal = document.getElementById('cartTotal');
+            const cartCount = document.getElementById('cart-count');
+
+            let html = '';
+            let total = 0;
+            let count = 0;
+
+            for (const key in cart) {
+                const item = cart[key];
+                total += item.price * item.qty;
+                count += item.qty;
+
+                html += `
+                    <div class="cart-item">
+                        <div class="cart-item-info">
+                            <div class="cart-item-name">${item.name}</div>
+                            <div class="cart-item-price">₹${item.price} x ${item.qty}</div>
+                        </div>
+                        <div class="quantity-controls">
+                            <button class="qty-btn" onclick="changeQty('${item.name}', -1)">-</button>
+                            <span class="qty-value">${item.qty}</span>
+                            <button class="qty-btn" onclick="changeQty('${item.name}', 1)">+</button>
+                            <button class="remove-item" onclick="removeFromCart('${item.name}')"><i class="fas fa-trash"></i></button>
+                        </div>
+                    </div>
+                `;
+            }
+
+            if (count === 0) {
+                html = '<p style="text-align: center; color: #888; margin-top: 2rem;">Your cart is empty.</p>';
+            }
+
+            cartItems.innerHTML = html;
+            cartTotal.innerText = '₹' + total;
+            cartCount.innerText = count;
+        }
+
+        function orderViaWhatsApp() {
+            const phone = '919718874894'; // Mazaar Restaurant WhatsApp
+            let message = '🍽️ *Order from Mazaar Website*\n\n';
+            let total = 0;
+
+            for (const key in cart) {
+                const item = cart[key];
+                message += `- ${item.name} x${item.qty}: ₹${item.price * item.qty}\n`;
+                total += item.price * item.qty;
+            }
+
+            message += `\n*Total: ₹${total}*`;
+            const url = `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
+            window.open(url, '_blank');
+        }
+
+        // Filter & Search Logic
+        function filterMenu(category) {
+            const items = document.querySelectorAll('.menu-item');
+            const btns = document.querySelectorAll('.cat-btn');
+
+            btns.forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+
+            items.forEach(item => {
+                const matchesCategory = category === 'all' || item.dataset.category === category;
+                // Reset display first based on category, search will refine
+                item.style.display = matchesCategory ? 'block' : 'none';
+            });
+
+            // Re-apply "View All" limit logic if "All" is selected, or search if text exists
+            // For simplicity, search overrides view limit
+            const searchTerm = document.getElementById('menuSearch').value.toLowerCase();
+            if (searchTerm) searchMenu();
+        }
+
+        function searchMenu() {
+            const input = document.getElementById('menuSearch');
+            const filter = input.value.toLowerCase();
+            const items = document.querySelectorAll('.menu-item');
+
+            items.forEach(item => {
+                const title = item.querySelector('h3').innerText.toLowerCase();
+                const desc = item.querySelector('p').innerText.toLowerCase();
+                if (title.indexOf(filter) > -1 || desc.indexOf(filter) > -1) {
+                    item.style.display = "";
+                    // If searching, ensure we ignore the view-all hiding
+                    item.classList.add('search-match');
+                } else {
+                    item.style.display = "none";
+                    item.classList.remove('search-match');
+                }
+            });
+
+            // Hide "View All" button when searching
+            const viewAllBtn = document.getElementById('viewAllBtn');
+            if (filter.length > 0) {
+                viewAllBtn.style.display = 'none';
+            } else {
+                viewAllBtn.style.display = 'inline-block';
+                limitMenuItems(); // Reset to limit view
+            }
+        }
+
+        // View All Logic
+        let isExpanded = false;
+
+        function limitMenuItems() {
+            const items = document.querySelectorAll('.menu-item');
+            if (isExpanded) return;
+
+            // Show only first 4
+            items.forEach((item, index) => {
+                if (index >= 4) {
+                    item.classList.add('hidden-item');
+                    item.style.display = 'none';
+                } else {
+                    item.style.display = 'block'; // Ensure flex/block behavior is kept
+                    if (window.innerWidth <= 768) item.style.display = 'flex'; // Fix for mobile flex layout
+                    else item.style.display = 'block';
+                }
+            });
+            document.getElementById('viewAllBtn').innerText = "View All Menu";
+        }
+
+        function toggleViewAll() {
+            const items = document.querySelectorAll('.menu-item');
+            isExpanded = !isExpanded;
+
+            if (isExpanded) {
+                items.forEach(item => {
+                    item.classList.remove('hidden-item');
+                    if (window.innerWidth <= 768) item.style.display = 'flex';
+                    else item.style.display = 'block';
+                });
+                document.getElementById('viewAllBtn').innerText = "Show Less";
+            } else {
+                limitMenuItems();
+            }
+        }
+
+        // Initialize view limit
+        window.addEventListener('load', limitMenuItems);
+
+        function toggleMobileMenu() {
+            const navLinks = document.querySelector('.nav-links');
+            navLinks.classList.toggle('active');
+        }
+
+        // Close menu when link clicked
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                document.querySelector('.nav-links').classList.remove('active');
+            });
+        });
+
+        // Close modal when clicking outside
+        window.onclick = function (event) {
+            const modal = document.getElementById('bookingModal');
+            if (event.target == modal) {
+                closeModal();
+            }
+        }
+
+        // ============================================
+        // PWA INSTALL LOGIC
+        // ============================================
+        let deferredPrompt;
+        const installPrompt = document.getElementById('install-prompt');
+
+        window.addEventListener('beforeinstallprompt', (e) => {
+            // Prevent Chrome 67 and earlier from automatically showing the prompt
+            e.preventDefault();
+            // Stash the event so it can be triggered later.
+            deferredPrompt = e;
+            // Update UI to notify the user they can add to home screen
+            showInstallPrompt();
+        });
+
+        function showInstallPrompt() {
+            // Check if already installed or dismissed
+            if (localStorage.getItem('pwaDismissed')) return;
+
+            setTimeout(() => {
+                installPrompt.classList.add('show');
+            }, 3000); // Show after 3 seconds
+        }
+
+        function closeInstallPrompt() {
+            installPrompt.classList.remove('show');
+            localStorage.setItem('pwaDismissed', 'true');
+        }
+
+        function installPWA() {
+            // Hide the app provided install promotion
+            installPrompt.classList.remove('show');
+            // Show the install prompt
+            if (deferredPrompt) {
+                deferredPrompt.prompt();
+                // Wait for the user to respond to the prompt
+                deferredPrompt.userChoice.then((choiceResult) => {
+                    if (choiceResult.outcome === 'accepted') {
+                        console.log('User accepted the A2HS prompt');
+                    } else {
+                        console.log('User dismissed the A2HS prompt');
+                    }
+                    deferredPrompt = null;
+                });
+            }
+        }
+
+        window.addEventListener('appinstalled', () => {
+            // Hide the app-provided install promotion
+            installPrompt.classList.remove('show');
+            // Clear the deferredPrompt so it can be garbage collected
+            deferredPrompt = null;
+            console.log('PWA was installed');
+        });
+
+        // ============================================
+        // FULL PAGE MENU FUNCTIONALITY
+        // ============================================
+        const menuPage = document.getElementById('menuPage');
+        const menuPageContent = document.getElementById('menuPageContent');
+        const categoryPanel = document.getElementById('categoryPanel');
+        let currentMenuCategory = 'all';
+
+        function openMenuPage() {
+            // Populate menu items from main menu
+            populateMenuPage();
+
+            // Show the overlay with animation
+            menuPage.classList.add('active');
+            document.body.style.overflow = 'hidden';
+
+            // Update bottom nav
+            document.querySelectorAll('.mobile-bottom-nav a').forEach(a => a.classList.remove('active'));
+            document.querySelector('.mobile-bottom-nav a[onclick*="openMenuPage"]').classList.add('active');
+        }
+
+        function closeMenuPage() {
+            menuPage.classList.remove('active');
+            document.body.style.overflow = '';
+            categoryPanel.classList.remove('active');
+
+            // Update bottom nav
+            document.querySelectorAll('.mobile-bottom-nav a').forEach(a => a.classList.remove('active'));
+            document.querySelector('.mobile-bottom-nav a[href="#home"]').classList.add('active');
+        }
+
+        function populateMenuPage() {
+            const mainMenuItems = document.querySelectorAll('#menuGrid .menu-item');
+            let html = '';
+
+            mainMenuItems.forEach((item, index) => {
+                const category = item.dataset.category;
+                const show = currentMenuCategory === 'all' || category === currentMenuCategory;
+
+                // Clone the item HTML with animation delay
+                const clone = item.cloneNode(true);
+                clone.style.animationDelay = `${index * 0.05}s`;
+                clone.classList.add('menu-item-animate');
+
+                if (!show) {
+                    clone.style.display = 'none';
+                }
+
+                html += clone.outerHTML;
+            });
+
+            menuPageContent.innerHTML = html;
+
+            // Update cart count in menu page
+            document.getElementById('menu-cart-count').innerText = document.getElementById('cart-count').innerText;
+        }
+
+        function toggleCategoryPanel() {
+            categoryPanel.classList.toggle('active');
+        }
+
+        function filterMenuPage(category) {
+            currentMenuCategory = category;
+
+            // Update active state on category items
+            document.querySelectorAll('.category-item').forEach(item => {
+                item.classList.remove('active');
+            });
+            event.target.closest('.category-item').classList.add('active');
+
+            // Filter items
+            const items = menuPageContent.querySelectorAll('.menu-item');
+            items.forEach(item => {
+                const matchesCategory = category === 'all' || item.dataset.category === category;
+                item.style.display = matchesCategory ? '' : 'none';
+            });
+
+            // Close the panel
+            toggleCategoryPanel();
+        }
+
+        function searchMenuPage() {
+            const input = document.getElementById('menuPageSearch');
+            const filter = input.value.toLowerCase();
+            const items = menuPageContent.querySelectorAll('.menu-item');
+
+            items.forEach(item => {
+                const title = item.querySelector('h3').innerText.toLowerCase();
+                if (title.indexOf(filter) > -1) {
+                    item.style.display = '';
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+        }
+
+        // Update cart count in menu page when cart changes
+        const originalUpdateCart = updateCart;
+        updateCart = function () {
+            originalUpdateCart();
+            const menuCartCount = document.getElementById('menu-cart-count');
+            if (menuCartCount) {
+                menuCartCount.innerText = document.getElementById('cart-count').innerText;
+            }
+        };
+    </script>
+</body>
+
+</html>
