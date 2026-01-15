@@ -1667,7 +1667,7 @@ select:focus {
     width: 350px;
     height: 100%;
     background: var(--bg-card);
-    z-index: 2000;
+    z-index: 2002;
     padding: 2rem;
     border-left: 1px solid #333;
     transition: right 0.3s;

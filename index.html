@@ -1252,6 +1252,18 @@
         let currentMenuCategory = 'all';
 
         function openMenuPage() {
+            // Reset to default state
+            currentMenuCategory = 'all';
+            const searchInput = document.getElementById('menuPageSearch');
+            if (searchInput) searchInput.value = '';
+
+            // Reset category active state
+            document.querySelectorAll('.category-item').forEach(item => {
+                item.classList.remove('active');
+            });
+            const allBtn = document.querySelector('.category-item[onclick*="all"]');
+            if (allBtn) allBtn.classList.add('active');
+
             // Populate menu items from main menu
             populateMenuPage();
 
